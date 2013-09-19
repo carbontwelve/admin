@@ -1,4 +1,7 @@
 <?php namespace Carbontwelve\Admin\Controllers\Backend;
+
+use Illuminate\Support\Facades\View;
+
 /**
  * Class AdminBaseController
  *
@@ -12,9 +15,15 @@
  * @since   0.0.1
  * @package Carbontwelve\Admin\Controllers\Backend
  */
-
 class AdminBaseController extends \Controller
 {
+
+    /**
+     * Package Name for admin view file resolving
+     *
+     * @var string
+     */
+    protected $package = 'admin';
 
     /**
      * Class Init
@@ -97,6 +106,56 @@ class AdminBaseController extends \Controller
         }
 
         $permissions = $decodedPermissions;
+    }
+
+    /**
+     * Admin View.
+     *
+     * @since  0.0.2
+     * @param string $view
+     * @param array $data
+     * @param string $package
+     * @return \Illuminate\Support\Facades\View
+     */
+    protected function adminView($view = '', array $data = array(), $package = null)
+    {
+
+        if ( is_null($package))
+        {
+            $package = $this->package;
+        }
+
+        $viewName = 'backend.' . $view;
+
+        // Check to see if view has been overloaded by the host app
+        if ( ! View::exists( $viewName ) )
+        {
+            // If not we should use our default view
+            $viewName = $package . '::backend.' . $view;
+        }
+
+        return View::make( $viewName, $data );
+
+    }
+
+    /**
+     * Package Name Setter
+     *
+     * @param $package
+     */
+    protected function setPackage( $package )
+    {
+        $this->package = $package;
+    }
+
+    /**
+     * Package Name Getter
+     *
+     * @return string
+     */
+    protected function getPackage()
+    {
+        return $this->package;
     }
 
 }
