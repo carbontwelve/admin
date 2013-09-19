@@ -25,6 +25,8 @@ class AdminBaseController extends \Controller
      */
     protected $package = 'admin';
 
+    private $administrationMenu;
+
     /**
      * Class Init
      *
@@ -34,6 +36,177 @@ class AdminBaseController extends \Controller
     {
         // Ensure that the user is an admin
         $this->beforeFilter('admin-auth');
+
+        // Build the menu ( this would be good to be abstracted )
+        $this->administrationMenu = array(
+
+            0 => array(
+                'text' => 'Dashboard',
+                'href' => null,
+                'icon' => 'glyphicon-th',
+                'class' => null,
+                'children' => array(
+                    array(
+                        'text' => 'Home',
+                        'href' => array(
+                            'route' => 'administration.dashboard',
+                            'attr' => array()
+                        ),
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    ),
+                    array(
+                        'text' => 'Network',
+                        'href' => array(
+                            'route' => 'administration.network',
+                            'attr' => array()
+                        ),
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    )
+                )
+            ),
+            1 => array(
+                'text' => 'Posts',
+                'href' => null,
+                'icon' => 'glyphicon-pushpin',
+                'class' => null,
+                'children' => array(
+                    array(
+                        'text' => 'All Posts',
+                        'href' => array(
+                            'route' => 'administration.content.type',
+                            'attr' => array('contentType' => 'post')
+                        ),
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    ),
+                    array(
+                        'text' => 'Add New',
+                        'href' => array(
+                            'route' => 'administration.content.add',
+                            'attr' => array('contentType' => 'post')
+                        ),
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    ),
+                    array(
+                        'text' => 'Categories',
+                        'href' => array(
+                            'route' => 'taxonomy.choice',
+                            'attr' => array('category')
+                        ),
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    ),
+                    array(
+                        'text' => 'Tags',
+                        'href' => array(
+                            'route' => 'taxonomy.choice',
+                            'attr' => array('post_tag')
+                        ),
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    )
+                )
+            ),
+            2 => array(
+                'text' => 'Media',
+                'href' => null,
+                'icon' => 'glyphicon-picture',
+                'class' => null,
+                'children' => array(
+                    array(
+                        'text' => 'Library',
+                        'href' => '#',
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    ),
+                    array(
+                        'text' => 'Add New',
+                        'href' => '#',
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    )
+                )
+            ),
+            3 => array(
+                'text' => 'Pages',
+                'href' => null,
+                'icon' => 'glyphicon-file',
+                'class' => null,
+                'children' => array(
+                    array(
+                        'text' => 'All Pages',
+                        'href' => array(
+                            'route' => 'administration.content.type',
+                            'attr' => array('contentType' => 'page')
+                        ),
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    ),
+                    array(
+                        'text' => 'Add New',
+                        'href' => array(
+                            'route' => 'administration.content.add',
+                            'attr' => array('contentType' => 'page')
+                        ),
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    )
+                )
+            ),
+            4 => array(
+                'text' => 'Comments',
+                'href' => '#',
+                'icon' => 'glyphicon-comment',
+                'class' => null,
+                'badge' => '16',
+                'children' => false
+            ),
+            5 => array(
+                'text' => 'Links',
+                'href' => null,
+                'icon' => 'glyphicon-link',
+                'class' => null,
+                'children' => array(
+                    array(
+                        'text' => 'All Links',
+                        'href' => null,
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    ),
+                    array(
+                        'text' => 'Add New',
+                        'href' => '#',
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    ),
+                    array(
+                        'text' => 'Link Categories',
+                        'href' => '#',
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    )
+                )
+            ),
+        );
+
+        View::share('administrationMenu', $this->administrationMenu);
+
     }
 
     /**
