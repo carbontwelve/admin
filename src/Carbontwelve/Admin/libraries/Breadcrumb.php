@@ -1,4 +1,4 @@
-<?php namespace Carbontwelve\Bloggy\Library;
+<?php namespace Carbontwelve\Bloggy\Libraries;
 
 use Carbontwelve\Bloggy\Interfaces\BreadcrumbInterface;
 
