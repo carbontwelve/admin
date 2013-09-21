@@ -1,6 +1,6 @@
 <?php namespace Carbontwelve\Admin\Libraries;
 
-use Carbontwelve\Bloggy\Interfaces\BreadcrumbInterface;
+use Carbontwelve\Admin\Interfaces\BreadcrumbInterface;
 
 /**
  * Class Breadcrumb
@@ -11,6 +11,8 @@ use Carbontwelve\Bloggy\Interfaces\BreadcrumbInterface;
  */
 class Breadcrumb implements BreadcrumbInterface{
 
+    protected $breadcrumbs = array();
+
     /**
      * Sets this->breadcrumbs to equal $breadcrumbs
      *
@@ -19,7 +21,7 @@ class Breadcrumb implements BreadcrumbInterface{
      */
     public function setBreadcrumbs ( array $breadcrumbs )
     {
-
+        $this->breadcrumbs = $breadcrumbs;
     }
 
     /**
@@ -29,7 +31,7 @@ class Breadcrumb implements BreadcrumbInterface{
      */
     public function getBreadcrumbs ()
     {
-
+        return $this->breadcrumbs;
     }
 
     /**
@@ -43,10 +45,20 @@ class Breadcrumb implements BreadcrumbInterface{
      * $value = array ( array(), array(), array() ... )'
      *
      * @param array $value
-     * @return mixed
+     * @return void
      */
     public function addBreadcrumb ( array $value )
     {
+
+        if ( is_array( $value[0][0] ) )
+        {
+            foreach ( $value as $array )
+            {
+                $this->addBreadcrumb( $array );
+            }
+        }
+
+        $this->breadcrumbs[] = $value;
 
     }
 
@@ -55,10 +67,17 @@ class Breadcrumb implements BreadcrumbInterface{
      *
      * @param $key
      * @param $value
-     * @return boolean
+     * @return void
+     * @throws \Exception
      */
     public function updateBreadcrumb ( $key, $value )
     {
+        if ( ! isset( $this->breadcrumbs[ $key ] ) )
+        {
+            throw new \Exception( 'Breadcrumb $key ('. $key .') does not exist' );
+        }
+
+        $this->breadcrumbs[ $key ] = $value;
 
     }
 
@@ -67,10 +86,18 @@ class Breadcrumb implements BreadcrumbInterface{
      * the array index
      *
      * @param $key
-     * @return boolean
+     * @return void
+     * @throws \Exception
      */
     public function deleteBreadcrumb ( $key )
     {
+        if ( ! isset( $this->breadcrumbs[ $key ] ) )
+        {
+            throw new \Exception( 'Breadcrumb $key ('. $key .') does not exist' );
+        }
+
+        unset( $this->breadcrumbs[ $key ] );
+        $this->resetBreadcrumbIndex();
 
     }
 
@@ -80,7 +107,7 @@ class Breadcrumb implements BreadcrumbInterface{
      */
     public function resetBreadcrumbIndex ()
     {
-
+        $this->breadcrumbs = array_values( $this->breadcrumbs );
     }
 
     /**

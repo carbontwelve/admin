@@ -35,7 +35,7 @@ interface BreadcrumbInterface {
      * $value = array ( array(), array(), array() ... )'
      *
      * @param array $value
-     * @return mixed
+     * @return void
      */
     public function addBreadcrumb ( array $value );
 
@@ -44,7 +44,8 @@ interface BreadcrumbInterface {
      *
      * @param $key
      * @param $value
-     * @return boolean
+     * @return void
+     * @throws \Exception
      */
     public function updateBreadcrumb ( $key, $value );
 
@@ -53,7 +54,8 @@ interface BreadcrumbInterface {
      * the array index
      *
      * @param $key
-     * @return boolean
+     * @return void
+     * @throws \Exception
      */
     public function deleteBreadcrumb ( $key );
 
