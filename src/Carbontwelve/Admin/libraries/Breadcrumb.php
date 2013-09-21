@@ -1,6 +1,7 @@
 <?php namespace Carbontwelve\Admin\Libraries;
 
 use Carbontwelve\Admin\Interfaces\BreadcrumbInterface;
+use Illuminate\Support\Facades\View;
 
 /**
  * Class Breadcrumb
@@ -49,17 +50,15 @@ class Breadcrumb implements BreadcrumbInterface{
      */
     public function addBreadcrumb ( array $value )
     {
-
-        if ( is_array( $value[0][0] ) )
+        if ( isset( $value[0]) && is_array( $value[0] ) )
         {
             foreach ( $value as $array )
             {
                 $this->addBreadcrumb( $array );
             }
+        }else{
+            $this->breadcrumbs[] = $value;
         }
-
-        $this->breadcrumbs[] = $value;
-
     }
 
     /**
@@ -98,7 +97,6 @@ class Breadcrumb implements BreadcrumbInterface{
 
         unset( $this->breadcrumbs[ $key ] );
         $this->resetBreadcrumbIndex();
-
     }
 
     /**
@@ -117,7 +115,12 @@ class Breadcrumb implements BreadcrumbInterface{
      */
     public function render()
     {
+        //@todo make this a configurable thing
+        $output = View::make( 'Admin::backend.elements.breadcrumbs' )
+            ->with( 'breadcrumbs', $this->breadcrumbs )
+            ->render();
 
+        return $output;
     }
 
 }

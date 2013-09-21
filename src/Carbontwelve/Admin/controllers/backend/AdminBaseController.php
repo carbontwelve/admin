@@ -43,6 +43,13 @@ class AdminBaseController extends \Controller
         // Set the breadcrumb provider
         $this->setBreadcrumbProvider( new Breadcrumb() );
 
+        // Set the default breadcrumb root
+        $this->getBreadcrumbProvider()->setBreadcrumbs(
+            array(
+                array( 'href' => 'administration.dashboard', 'text' => 'Dashboard' )
+            )
+        );
+
         // Ensure that the user is an admin
         $this->beforeFilter('admin-auth');
 
@@ -315,6 +322,8 @@ class AdminBaseController extends \Controller
             // If not we should use our default view
             $viewName = $package . '::backend.' . $view;
         }
+
+        View::share( 'breadcrumbs', $this->getBreadcrumbProvider()->render() );
 
         return View::make( $viewName, $data );
 

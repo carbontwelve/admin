@@ -184,6 +184,7 @@
 <div class="content">
     @section('pageContent')
     @show
+    {{ $breadcrumbs }}
 </div>
 <!-- ./page content -->
 
