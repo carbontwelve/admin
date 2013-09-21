@@ -1,5 +1,7 @@
 <?php namespace Carbontwelve\Admin\Controllers\Backend;
 
+use Carbontwelve\Bloggy\Interfaces\BreadcrumbInterface;
+use Carbontwelve\Bloggy\Library\Breadcrumb;
 use Illuminate\Support\Facades\View;
 
 /**
@@ -25,6 +27,9 @@ class AdminBaseController extends \Controller
      */
     protected $package = 'admin';
 
+    /** @var Breadcrumb */
+    protected $breadcrumbProvider;
+
     private $administrationMenu;
 
     /**
@@ -34,6 +39,10 @@ class AdminBaseController extends \Controller
      */
     public function __construct()
     {
+
+        // Set the breadcrumb provider
+        $this->setBreadcrumbProvider( new Breadcrumb() );
+
         // Ensure that the user is an admin
         $this->beforeFilter('admin-auth');
 
@@ -329,6 +338,25 @@ class AdminBaseController extends \Controller
     protected function getPackage()
     {
         return $this->package;
+    }
+
+    /**
+     * Sets the breadcrumb provider to use
+     *
+     * @param $breadcrumbs
+     */
+    protected function setBreadcrumbProvider ( BreadcrumbInterface $breadcrumb )
+    {
+        $this->breadcrumbProvider = $breadcrumb;
+    }
+
+    /**
+     * Gets the current breadcrumb provider
+     * @return Breadcrumb
+     */
+    protected function getBreadcrumbProvider ()
+    {
+        return $this->breadcrumbProvider;
     }
 
 }

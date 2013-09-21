@@ -198,7 +198,6 @@
     $(function () {
         $('#myTab a:last').tab('show');
 
-
         // sidebar menu dropdown toggle
         $(".sidebar-nav .dropdown-toggle").click(function (e) {
 
