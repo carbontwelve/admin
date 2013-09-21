@@ -1,8 +1,8 @@
 <ol class="breadcrumb">
     <?php
-        $lastElementKey = key( end( $breadcrumbs ) );
-        foreach ($breadcrumbs as $key => $breadcrumb){
-            if ( $key == $lastElementKey )
+        $lastElement    = end( $breadcrumbs );
+        foreach ($breadcrumbs as $breadcrumb){
+            if ( $breadcrumb == $lastElement )
             { ?>
     <li class="active"><?php echo ( isset( $breadcrumb['text'] ) ) ? $breadcrumb['text'] : ''; ?></li>
             <?php }else{ ?>
