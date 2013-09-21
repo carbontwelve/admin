@@ -1,7 +1,7 @@
 <?php namespace Carbontwelve\Admin\Controllers\Backend;
 
-use Carbontwelve\Bloggy\Interfaces\BreadcrumbInterface;
-use Carbontwelve\Bloggy\Libraries\Breadcrumb;
+use Carbontwelve\Admin\Interfaces\BreadcrumbInterface;
+use Carbontwelve\Admin\Libraries\Breadcrumb;
 use Illuminate\Support\Facades\View;
 
 /**

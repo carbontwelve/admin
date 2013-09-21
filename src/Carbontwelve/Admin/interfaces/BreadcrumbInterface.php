@@ -1,4 +1,4 @@
-<?php namespace Carbontwelve\Bloggy\Interfaces;
+<?php namespace Carbontwelve\Admin\Interfaces;
 
 /**
  * Class BreadcrumbInterface
