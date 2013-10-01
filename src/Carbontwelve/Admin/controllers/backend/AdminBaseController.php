@@ -219,6 +219,28 @@ class AdminBaseController extends \Controller
                     )
                 )
             ),
+            6 => array(
+                'text' => 'Configuration',
+                'href' => '#',
+                'icon' => 'spanner',
+                'class' => null,
+                'children' => array(
+                    array(
+                        'text' => 'Taxonomy Units',
+                        'href' => null,
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    ),
+                    array(
+                        'text' => 'Taxons',
+                        'href' => null,
+                        'icon' => null,
+                        'class' => null,
+                        'children' => array(),
+                    )
+                )
+            )
         );
 
         View::share('administrationMenu', $this->administrationMenu);
