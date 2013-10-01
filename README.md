@@ -1,6 +1,8 @@
 Carbontwelve/Admin
 =====
 
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/carbontwelve/admin/badges/quality-score.png?s=b0f664165a15e20db8b554d166414db02f097148)](https://scrutinizer-ci.com/g/carbontwelve/admin/)
+
 Administration package for Laravel4
 
 
