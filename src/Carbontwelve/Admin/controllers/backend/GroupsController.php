@@ -19,15 +19,34 @@ use Cartalyst\Sentry\Facades\Laravel\Sentry;
 class GroupController extends AdminBaseController
 {
 
+    public function __construct()
+    {
+        // I do this first as the AdminBaseController __construct() sets up breadcrumbs and stuff
+        parent::__construct();
+
+        // Lets add the class base breadcrumb here
+        $this->getBreadcrumbProvider()->addBreadcrumb(
+            array( 'href' => route('administration.groups.index'), 'text' => 'Group Management' )
+        );
+    }
+
     public function index()
     {
-
         // Find all groups
         $groups = Sentry::getGroupProvider()->createModel()->paginate();
 
         // Display the groups index page
         return $this->adminView( 'groups.index', compact('groups') );
+    }
 
+    public function add()
+    {
+        $this->getBreadcrumbProvider()->addBreadcrumb(
+            array( 'href' => route('administration.groups.add'), 'text' => 'Create New Record' )
+        );
+
+        // Display the groups add page
+        return $this->adminView( 'groups.create' );
     }
 
 }

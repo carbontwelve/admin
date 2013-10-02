@@ -176,7 +176,7 @@
 
 <!-- Sidebar Navigation -->
 <div class="sidebar-nav">
-    @include('frontend/elements/admin-menu')
+    <?php //@include('frontend/elements/admin-menu') ?>
 </div>
 <!-- ./ sidebar navigation -->
 
@@ -202,8 +202,7 @@
     @endif
     <!-- ./notifications -->
 
-    @section('pageContent')
-    @show
+    @yield('content')
     {{ $breadcrumbs }}
 </div>
 <!-- ./page content -->

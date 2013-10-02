@@ -14,7 +14,16 @@ Route::group(
                     array
                     (
                         'as' => 'administration.groups.index',
-                        'uses' => 'Carbontwelve\Admin\Controllers\BackendGroupController@index'
+                        'uses' => 'Carbontwelve\Admin\Controllers\Backend\GroupController@index'
+                    )
+                );
+
+                Route::get(
+                    'add',
+                    array
+                    (
+                        'as' => 'administration.groups.add',
+                        'uses' => 'Carbontwelve\Admin\Controllers\Backend\GroupController@add'
                     )
                 );
 

@@ -11,6 +11,7 @@
  */
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AdminServiceProvider extends ServiceProvider {
 
@@ -52,7 +53,9 @@ class AdminServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        //
+        // For some reason we have to register our view namespace. I do not
+        // know why, I thought laravel did this automatically on boot();
+        View::addNamespace('admin', __DIR__.'/../../views');
     }
 
     /**
