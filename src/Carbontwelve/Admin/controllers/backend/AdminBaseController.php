@@ -345,7 +345,7 @@ class AdminBaseController extends \Controller
             $viewName = $package . '::backend.' . $view;
         }
 
-        View::share( 'breadcrumbs', $this->getBreadcrumbProvider()->render() );
+        //View::share( 'breadcrumbs', $this->getBreadcrumbProvider()->render() );
 
         return View::make( $viewName, $data );
 
