@@ -26,7 +26,6 @@ Route::group(
                         'uses' => 'Carbontwelve\Admin\Controllers\Backend\GroupController@add'
                     )
                 );
-
             }
         );
     }
