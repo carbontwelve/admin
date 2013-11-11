@@ -23,13 +23,11 @@ class AdminDashboardController extends AdminBaseController
 
     public function index()
     {
-        $numberOfCategories = Classification::getTaxonomyTermProvider()
-            ->countTaxonomies('category');
+        $numberOfCategories = 0;
 
-        $numberOfTags = Classification::getTaxonomyTermProvider()
-            ->countTaxonomies('post_tag');
+        $numberOfTags = 0;
 
-        return $this->adminView( 'backend.dashboard', array(
+        return $this->adminView( 'dashboard', array(
                 'numberOfCategories' => $numberOfCategories,
                 'numberOfTags'       => $numberOfTags
             ) );

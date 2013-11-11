@@ -5,14 +5,14 @@ Route::group(
     array('prefix' => 'administration'),
     function () {
 
-        /*Route::get(
+        Route::get(
             '/dashboard',
             array
             (
                 'as' => 'administration.dashboard',
                 'uses' => 'Carbontwelve\Admin\Controllers\Backend\AdminDashboardController@index'
             )
-        );*/
+        );
 
         Route::group(
             array('prefix' => 'groups'),
