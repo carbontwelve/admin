@@ -12,6 +12,7 @@ class MenuItem
     public $class      = '';
     public $current    = false;
     public $importance = 0;
+    public $locked     = false;
 
     /** @var \Carbontwelve\Admin\Libraries\Menu\Items  */
     public $children;
@@ -65,13 +66,41 @@ class MenuItem
 
     }
 
+    public function merge( MenuItem $value)
+    {
+        if ($this->locked === false)
+        {
+            $this->text       = $value->text;
+            $this->href       = $value->href;
+            $this->icon       = $value->icon;
+            $this->class      = $value->class;
+            $this->current    = $value->current;
+            $this->importance = $value->importance;
+            $this->locked     = $value->locked;
+        }
+
+        $this->children = $this->children->merge( $value->children );
+    }
+
     public function setCurrentUrl()
     {
-        if ( URL::current() == $this->href )
+        if ($this->children->count() > 0)
         {
-            $this->current = true;
+            foreach ($this->children as $child)
+            {
+                if ( URL::current() == $child->href )
+                {
+                    $this->current = true;
+                }
+            }
+
         }else{
-            $this->current = false;
+            if ( URL::current() == $this->href )
+            {
+                $this->current = true;
+            }else{
+                $this->current = false;
+            }
         }
     }
 

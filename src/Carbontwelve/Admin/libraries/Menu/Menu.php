@@ -20,9 +20,21 @@ class Menu implements MenuInterface{
         $this->items = $items ?: new Items();
     }
 
-    public function register( $name = null )
+    public function register( $value = null, $key = null )
     {
-        $this->items->push($name);
+        if (is_null($key) )
+        {
+            $this->items->push($value);
+        }else{
+
+            if ( $this->items->has($key) ){
+
+                $this->items->mergeIntoKey($key, $value);
+
+            }else{
+                $this->items->put($key, $value);
+            }
+        }
         $this->items->order();
     }
 

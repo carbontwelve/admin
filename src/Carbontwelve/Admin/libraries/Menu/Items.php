@@ -7,16 +7,18 @@ class Items extends BaseCollection
 
     public function order()
     {
-
         /** @var MenuItem $a */
         /** @var MenuItem $b */
-        usort($this->items, function($a, $b) {
+        uasort($this->items, function($a, $b) {
             return $a->importance - $b->importance;
         });
 
         return $this;
-
     }
 
-
+    public function mergeIntoKey( $key, $value)
+    {
+        $this->items[$key]->merge($value);
+        return $this;
+    }
 }
