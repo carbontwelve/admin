@@ -170,13 +170,17 @@
 
 <!-- Top Navigation Bar -->
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <a class="navbar-brand" href="#">WP Import App</a>
+    <a class="navbar-brand" href="{{ route('home') }}">App Title</a>
 </nav>
 <!-- ./ top navigation bar -->
 
 <!-- Sidebar Navigation -->
 <div class="sidebar-nav">
-    <?php //@include('frontend/elements/admin-menu') ?>
+    <ul>
+    @foreach ( $administrationMenu as $item )
+        {{ $item }}
+    @endforeach
+    </ul>
 </div>
 <!-- ./ sidebar navigation -->
 

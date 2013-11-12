@@ -2,7 +2,9 @@
 
 use Carbontwelve\Admin\Interfaces\BreadcrumbInterface;
 use Carbontwelve\Admin\Libraries\Breadcrumb;
+use Carbontwelve\Admin\Libraries\Menu\Menu;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Event;
 
 /**
  * Class AdminBaseController
@@ -30,6 +32,8 @@ class AdminBaseController extends \Controller
     /** @var Breadcrumb */
     protected $breadcrumbProvider;
 
+    protected $menuProvider;
+
     private $administrationMenu;
 
     /**
@@ -43,17 +47,26 @@ class AdminBaseController extends \Controller
         // Set the breadcrumb provider
         $this->setBreadcrumbProvider( new Breadcrumb() );
 
+        // Set the menu provider
+        $this->menuProvider = new Menu();
+
+        // Fire the menu register event to get all admin menu items
+        // and render the menu
+        Event::fire('menu.register', array( $this->menuProvider ));
+        View::share('administrationMenu', $this->menuProvider->render());
+
         // Set the default breadcrumb root
         $this->getBreadcrumbProvider()->setBreadcrumbs(
             array(
-                array( 'href' => 'administration.dashboard', 'text' => 'Dashboard' )
+                array( 'href' => route('administration.dashboard'), 'text' => 'Dashboard' )
             )
         );
 
         // Ensure that the user is an admin
         $this->beforeFilter('admin-auth');
 
-        // Build the menu ( this would be good to be abstracted )
+        // Build the menu ( this would be good to be abstracted ) done above, once the below array is converted
+        // then delete this
         $this->administrationMenu = array(
 
             0 => array(
@@ -243,7 +256,6 @@ class AdminBaseController extends \Controller
             )
         );
 
-        View::share('administrationMenu', $this->administrationMenu);
 
     }
 
