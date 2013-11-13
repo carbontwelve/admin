@@ -2,7 +2,7 @@
 
 {{-- Title --}}
 @section('title')
-User Management &ndash; Modify User Record
+User Management
 @parent
 @stop
 
@@ -12,18 +12,18 @@ User Management &ndash; Modify User Record
 <div class="container auto-max-width">
     <div class="page-header">
         <h1>
-            <span class="glyphicon glyphicon-user reposition"></span>
-            User
-            <small>Modify</small>
+            <span class="glyphicon glyphicon-tower reposition"></span>
+            Permission
+            <small>Management</small>
 
             <div class="pull-right">
                 <a class="btn btn-small btn-info" href="#">
                     <span class="glyphicon glyphicon-question-sign"></span>
                 </a>
 
-                <a class="btn btn-small btn-primary" href="{{ route('administration.users.index') }}">
-                    <span class="glyphicon glyphicon-circle-arrow-left"></span>
-                    Back
+                <a class="btn btn-small btn-primary" href="{{ route('administration.users.add') }}">
+                    <span class="glyphicon glyphicon-plus-sign"></span>
+                    Add New
                 </a>
             </div>
         </h1>

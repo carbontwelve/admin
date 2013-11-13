@@ -12,7 +12,7 @@ User Management
 <div class="container auto-max-width">
     <div class="page-header">
         <h1>
-            <span class="glyphicon glyphicon-pushpin reposition"></span>
+            <span class="glyphicon glyphicon-user reposition"></span>
             User
             <small>Management</small>
 

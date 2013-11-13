@@ -14,12 +14,6 @@
         $dashboardChildItem->href   = route('administration.dashboard');
         $dashboardMenuItem->addChild($dashboardChildItem);
 
-        $dashboardChildItem         = new \Carbontwelve\Admin\Libraries\Menu\MenuItem();
-        $dashboardChildItem->text   = 'Network';
-        $dashboardChildItem->href   = '#';
-        $dashboardChildItem->importance = 2;
-        $dashboardMenuItem->addChild($dashboardChildItem);
-
         $menuProvider->register($dashboardMenuItem, 'dashboard');
 
         $dashboardMenuItem          = new \Carbontwelve\Admin\Libraries\Menu\MenuItem();
@@ -30,7 +24,7 @@
 
         $dashboardChildItem         = new \Carbontwelve\Admin\Libraries\Menu\MenuItem();
         $dashboardChildItem->text   = 'Users';
-        $dashboardChildItem->href   = '#';
+        $dashboardChildItem->href   = route('administration.users.index');
         $dashboardMenuItem->addChild($dashboardChildItem);
 
         $dashboardChildItem         = new \Carbontwelve\Admin\Libraries\Menu\MenuItem();
@@ -40,7 +34,7 @@
 
         $dashboardChildItem         = new \Carbontwelve\Admin\Libraries\Menu\MenuItem();
         $dashboardChildItem->text   = 'Permissions';
-        $dashboardChildItem->href   = '#';
+        $dashboardChildItem->href   = route('administration.permissions.index');
         $dashboardMenuItem->addChild($dashboardChildItem);
 
         $menuProvider->register($dashboardMenuItem, 'configuration');

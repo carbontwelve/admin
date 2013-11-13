@@ -12,7 +12,7 @@ Group Management &ndash; Modify Group Record
 <div class="container auto-max-width">
     <div class="page-header">
         <h1>
-            <span class="glyphicon glyphicon-pushpin reposition"></span>
+            <span class="glyphicon glyphicon-wrench reposition"></span>
             Group
             <small>Modify</small>
 
