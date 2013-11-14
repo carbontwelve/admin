@@ -48,5 +48,4 @@ class UserController extends AdminBaseController
         // Display the groups add page
         return $this->adminView( 'users.create' );
     }
-
 }
