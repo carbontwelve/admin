@@ -9,6 +9,28 @@ Dashboard
 {{-- Content --}}
 @section('content')
 
-<pre><?php var_dump( $administrationMenu ); ?></pre>
+<div class="container auto-max-width">
+    <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-th reposition"></span>
+            Dashboard
+
+            <div class="pull-right">
+                <a class="btn btn-small btn-info" href="#">
+                    <span class="glyphicon glyphicon-question-sign"></span>
+                </a>
+            </div>
+        </h1>
+    </div>
+
+    <div class="row">
+        @foreach ($widgets->getItems() as $pane)
+        {{ $pane->value }}
+        @endforeach
+    </div>
+
+</div>
+
+
 
 @stop

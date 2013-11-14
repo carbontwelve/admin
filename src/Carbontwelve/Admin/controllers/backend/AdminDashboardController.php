@@ -1,9 +1,6 @@
 <?php namespace Carbontwelve\Admin\Controllers\Backend;
 
-use Carbontwelve\Admin\Interfaces\BreadcrumbInterface;
-use Carbontwelve\Admin\Libraries\Breadcrumb;
-use Illuminate\Support\Facades\View;
-use Classification;
+use Illuminate\Support\Facades\Event;
 
 /**
  * Class AdminBaseController
@@ -23,13 +20,13 @@ class AdminDashboardController extends AdminBaseController
 
     public function index()
     {
-        $numberOfCategories = 0;
+        /** @var \Carbontwelve\Widgets\Drivers\Pane $dashboardWidget */
+        $dashboardWidget = \WidgetManager::createPaneDriver('dashboard');
 
-        $numberOfTags = 0;
+        Event::fire('dashboard.register', array( $dashboardWidget ));
 
         return $this->adminView( 'dashboard', array(
-                'numberOfCategories' => $numberOfCategories,
-                'numberOfTags'       => $numberOfTags
+                'widgets' => $dashboardWidget
             ) );
     }
 

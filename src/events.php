@@ -38,5 +38,13 @@
         $dashboardMenuItem->addChild($dashboardChildItem);
 
         $menuProvider->register($dashboardMenuItem, 'configuration');
+    });
 
+    /** @var \Carbontwelve\Widgets\Drivers\Pane $dashboardWidget */
+    Event::listen('dashboard.register', function( $dashboardWidget )
+    {
+        $dashboardWidget->add('gstats', 0, function(){
+            return View::make('admin::backend.widgets.dashboard.stats')
+                ->render();
+        });
     });
